@@ -1,0 +1,534 @@
+Option Explicit
+
+Sub Gra_statki()
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''' CZĘŚĆ PIERWSZA
+Dim w As Integer
+Dim k As Integer
+Dim i As Integer
+
+i = 1
+
+Range("a5").Select
+
+Do While i < 11
+
+ActiveCell.Offset(0, i) = i
+ActiveCell.Offset(i, 0) = i
+i = i + 1
+Loop
+
+''''''''''''''''''''''''''''''''''''''''''''''''' Tabela format
+
+    Range("B6:K15").Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    Range("B5:K5").Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 65535
+    End With
+    Range("A6:A15").Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 65535
+    End With
+    Range("B5:K5").Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Range("A6:A15").Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Range("A5").Select
+
+''''''''''''''''''''''''''''''''''''''''''''''''' Kopiowanie
+    Range("A5:K15").Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Range("N5").Select
+    ActiveSheet.Paste
+    Range("N20").Select
+    ActiveSheet.Paste
+    Range("A1").Select
+    ActiveCell.FormulaR1C1 = "11"
+    Selection.AutoFill Destination:=Range("A1:X1"), Type:=xlFillDefault
+    Range("A1:X1").Select
+    Columns("A:X").Select
+    Columns("A:X").EntireColumn.AutoFit
+    Rows("1:1").Select
+    Selection.ClearContents
+    Range("A1").Select
+    
+ ''''''''''''''''''''''''''''''''''''''''''''''''' Tabela ze statystykami
+ 
+    Range("Z4").Select
+    ActiveCell.FormulaR1C1 = "Liczba zatopionych statków - przeciwnika"
+    Range("Z5").Select
+    Columns("Z:Z").EntireColumn.AutoFit
+    Range("Z7").Select
+    ActiveCell.FormulaR1C1 = "Liczba zatopionych statków - własne"
+    Range("Z5").Select
+    Range("z5") = "=SUM(R[1]C[-11]:R[11]C[-2])"
+    Range("z8") = "=SUM(R[13]C[-24]:R[22]C[-15])"
+    Range("Z4:Z5").Select
+    
+  
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    Range("Z7:Z8").Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    Range("Z10").Select
+    
+    
+        
+''''''''''''''''''''''''''''''''''''''''''''''''' Ustawienie przeciwnika
+        
+Dim ii As Integer
+Dim w1 As Integer
+Dim k1 As Integer
+
+
+
+ii = 1
+Do Until ii >= 11
+Range("l20") = "=21+(30-21)*RAND()"
+Range("l21") = "=15+(24-15)*RAND()"
+w1 = Range("l20").Value
+k1 = Range("l21").Value
+Cells(w1, k1).Value = 1
+ii = ii + 1
+
+Loop
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''' Schowanie się tabel
+
+    Rows("20:30").Select
+    Selection.EntireRow.Hidden = True
+    Range("A3").Select
+  
+''''''''''''''''''''''''''''''''''''''''''''''''' CZĘŚĆ DRUGA
+  
+''''''''''''''''''''''''''''''''''''''''''''''''' Ustawione statki - tabela
+
+
+    Range("C2:D2").Select
+    Selection.ClearContents
+    Range("C3").Select
+    ActiveCell.FormulaR1C1 = "Liczba ustawionych statków"
+    Range("C3:J3").Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Selection.Merge
+    Range("K3").Select
+    ActiveCell.FormulaR1C1 = "=SUM(R[3]C[-9]:R[12]C)"
+    Range("C3:K3").Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .Weight = xlThin
+    End With
+    Range("K3").Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorAccent1
+        .TintAndShade = 0.599993896298105
+        .PatternTintAndShade = 0
+    End With
+    Range("C4").Select
+    
+    
+rrrrrrrrrrrr:
+Dim number As Integer
+    
+    Cells(3, 11).Select
+    number = ActiveCell.Value
+    Select Case number
+        
+    Case Is > 10
+    
+            Cells(3, 12).Value = "Za dużo statków"
+                Range("L3:P3").Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Selection.Merge
+    Range("U3").Select
+            With Cells(3, 12).Interior
+            .Pattern = xlSolid
+            .PatternColorIndex = xlAutomatic
+            .Color = 878787
+    End With
+    
+        Case Is < 10
+        
+            Cells(3, 12).Value = "Za mało statków"
+                Range("L3:P3").Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Selection.Merge
+    Range("U3").Select
+            With Cells(3, 12).Interior
+            .Pattern = xlSolid
+            .PatternColorIndex = xlAutomatic
+            .Color = 213131
+    End With
+    
+    Case 10
+            Cells(3, 12).Value = "OK"
+            With Cells(3, 12).Interior
+            .Pattern = xlSolid
+            .PatternColorIndex = xlAutomatic
+            .Color = 111111
+    End With
+End Select
+    
+    
+''''''''''''''''''''''''''''''''''''''''''''''''' Poprawność danych
+    
+        Range("B6:K15").Select
+    With Selection.Validation
+        .Delete
+        .Add Type:=xlValidateWholeNumber, AlertStyle:=xlValidAlertStop, _
+        Operator:=xlBetween, Formula1:="0", Formula2:="1"
+        .IgnoreBlank = True
+        .InCellDropdown = True
+        .InputTitle = ""
+        .ErrorTitle = ""
+        .InputMessage = ""
+        .ErrorMessage = ""
+        .ShowInput = True
+        .ShowError = True
+    End With
+    Range("B4").Select
+
+''''''''''''''''''''''''''''''''''''''''''''''''' Kopia tabeli własnej
+
+    Range("A5:K15").Select
+    Selection.Copy
+    Range("A20").Select
+    ActiveSheet.Paste
+    Range("B21:K30").Select
+    Application.CutCopyMode = False
+    With Selection.Interior
+        .Pattern = xlNone
+    End With
+    Range("A20").Select
+    
+''''''''''''''''''''''''''''''''''''''''''''''''' Instrukcje
+
+Dim ans3 As String
+Dim ans4 As String
+Dim ans5 As String
+
+
+ans4 = MsgBox("W nastpępnym kroku ustaw 10 statków na kolorowym obszarze", vbOKOnly)
+    Range("B6:K15").Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorAccent6
+        .TintAndShade = 0.399975585192419
+        .PatternTintAndShade = 0
+    End With
+    Range("A3").Select
+ans5 = MsgBox("Wprowadź wartość 1 reprezentującą twój statek w wyznaczonym polu", vbOKOnly)
+Do While Range("k3") < 10
+
+Dim w6 As Integer
+Dim k6 As Integer
+Range("l28") = InputBox("Wprowadź numer wiersza")
+Range("l29") = InputBox("Wprowadź numer kolumny")
+w6 = Range("l28")
+k6 = Range("l29")
+Cells(w6 + 5, k6 + 1) = 1
+Loop
+
+If Range("k3") = 10 Then
+
+ans3 = MsgBox("Ustawiono statki", vbOKOnly)
+
+End If
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''' CZĘŚĆ TRZECIA
+
+''''''''''''''''''''''''''''''''''''''''''''''''' Rundy
+
+
+
+If Range("k3") <> 10 Then
+MsgBox ("Wprowadź wymaganą liczbę staków")
+GoTo rrrrrrrrrrrr
+ElseIf Range("k3") = 10 Then
+Range("l3") = "OK"
+End If
+
+
+Range("z1") = "=1+(2-1)*RAND()"
+
+Do While Range("z5") < 10 Or Range("z8") < 10
+
+
+    If Range("z1").Value < 1.5 Then
+    Range("aa1").Value = 1
+    ElseIf Range("z1").Value >= 1.5 Then Range("aa1").Value = 2
+    End If
+    
+    
+wwwwwwwww:
+
+If Range("aa1").Value = 1 Then
+
+
+With Application
+    .ScreenUpdating = True
+    End With
+    Dim w3 As Integer
+    Dim k3 As Integer
+    Dim ans As String
+    Dim ans2 As String
+
+wiersz:
+    Range("l23") = InputBox("wybierz numer wiersza")
+    If Range("l23") = "" Then
+    GoTo ooooooooooooo
+    End If
+    
+    w1 = Range("l23").Value
+
+    If Cells(23, 8) <> 1 Or 2 Or 3 Or 4 Or 5 Or 6 Or 7 Or 8 Or 9 Or 10 Then
+    ElseIf w3 = 1 Or 2 Or 3 Or 4 Or 5 Or 6 Or 7 Or 8 Or 9 Or 10 Then
+        GoTo kolumna
+    End If
+
+kolumna:
+    Range("l24") = InputBox("wybierz numer kolumny")
+    If Range("l23") = "" Then
+    GoTo ooooooooooooo
+    End If
+    k1 = Range("l24").Value
+    Select Case k3
+
+    Case Is <> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+    Case 1 To 10
+        GoTo kon1
+    
+    End Select
+kon1:
+
+
+    If Cells(w1 + 20, k1 + 14) = 1 Then
+    Cells(w1 + 5, k1 + 14) = 1
+    ans = MsgBox("Trafiony, zatopiny", vbOKOnly)
+    Cells(w1 + 5, k1 + 14).Interior.Color = vbRed
+    Range("z5").Select
+    Range("z5") = "=SUM(R[1]C[-11]:R[10]C[-2])"
+    Range("z8") = "=SUM(R[13]C[-24]:R[22]C[-15])"
+    ElseIf Cells(w1 + 20, k1 + 14) <> 1 Then
+    Cells(w1 + 5, k1 + 14) = 0
+    Cells(w1 + 5, k1 + 14).Interior.Color = vbGreen
+    End If
+
+GoTo zzzzzzzzzzzz
+
+ElseIf Range("aa1").Value = 2 Then
+
+
+Dim w5 As Integer
+Dim k5 As Integer
+
+
+Range("l26") = "=21+(30-21)*RAND()"
+Range("l27") = "=2+(11-2)*RAND()"
+w5 = Range("l26").Value
+k5 = Range("l27").Value
+Cells(w5, k5).Value = 0
+End If
+
+If Cells(w5 - 15, k5) = 1 Then
+Cells(w5, k5) = 1
+Cells(w5 - 15, k5).Interior.Color = vbRed
+Range("z5") = "=SUM(R[1]C[-11]:R[10]C[-2])"
+Range("z8") = "=SUM(R[13]C[-24]:R[22]C[-15])"
+ElseIf Cells(w5 - 15, k5) <> 1 Then
+Cells(w5, k5) = 0
+Cells(w5 - 15, k5).Interior.Color = vbGreen
+GoTo zzzzzzzzzzzz
+End If
+
+zzzzzzzzzzzz:
+
+If Range("aa1").Value = 1 Then
+    Range("aa1").Value = 2
+        If Range("z5").Value = 10 Then
+        MsgBox ("Wygrana. Statki przeciwnika zatopione")
+        GoTo ooooooooooooo
+        End If
+        If Range("z8").Value = 10 Then
+        MsgBox ("Przegrana. Przeciwnik zatopił twoje statki")
+        GoTo ooooooooooooo
+        End If
+    GoTo wwwwwwwww
+    ElseIf Range("aa1").Value = 2 Then
+    Range("aa1").Value = 1
+        If Range("z5").Value = 10 Then
+        MsgBox ("Wygrana. Statki przeciwnika zatopione")
+        GoTo ooooooooooooo
+        End If
+        If Range("z8").Value = 10 Then
+        MsgBox ("Przegrana. Przeciwnik zatopił twoje statki")
+        GoTo ooooooooooooo
+        End If
+    GoTo wwwwwwwww
+    End If
+
+
+Loop
+ooooooooooooo:
+MsgBox ("Koniec gry")
+    
+End Sub
+
