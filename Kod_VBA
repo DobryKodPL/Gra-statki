@@ -414,7 +414,9 @@ Do While Range("z5") < 10 Or Range("z8") < 10
 
     If Range("z1").Value < 1.5 Then
     Range("aa1").Value = 1
+    MsgBox ("Grę zaczynasz ty")
     ElseIf Range("z1").Value >= 1.5 Then Range("aa1").Value = 2
+    MsgBox ("Grę zaczyna przeciwnik")
     End If
     
     
